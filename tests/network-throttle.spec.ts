@@ -3,10 +3,6 @@ import { login } from './helpers/auth';
 
 test.describe('Network Throttle — Slow 3G Simulation', () => {
 
-  test.beforeEach(({ browserName }) => {
-    test.skip(browserName !== 'chromium', 'CDP network throttling is only supported in Chromium');
-  });
-
   test('TC-NET-001: Login loads within 15s on Slow 3G (500ms RTT / 400kbps down)', async ({ page, context }) => {
     const cdpSession = await context.newCDPSession(page);
     await cdpSession.send('Network.emulateNetworkConditions', {
